@@ -1,0 +1,117 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-allopen'
+}
+
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'com.aumarbello.telleriumassessment.OpenClass'
+}
+
+android {
+    compileSdkVersion Versions.compileSdk
+    buildToolsVersion Versions.buildTool
+
+    defaultConfig {
+        applicationId "com.aumarbello.telleriumassessment"
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "com.aumarbello.telleriumassessment.runner.TestRunner"
+
+        ndk {
+            abiFilters "x86", "arm64-v8a", "x86_64", "armeabi-v8a"
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    sourceSets {
+        String sharedTestDir = 'src/testCommon/java'
+        test {
+            java.srcDir sharedTestDir
+        }
+        androidTest {
+            java.srcDir sharedTestDir
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation Deps.kotlinStdlib
+    implementation Deps.appCompat
+    implementation Deps.coreKtx
+    implementation Deps.liveData
+    implementation Deps.viewModelKtx
+    implementation Deps.coroutinesCore
+    implementation Deps.coroutinesAndroid
+    implementation Deps.material
+    implementation Deps.constraintLayout
+    implementation Deps.daggerRuntime
+    implementation Deps.room
+    implementation Deps.lifecycleKtx
+    implementation Deps.timber
+    implementation Deps.navigation
+    implementation Deps.navigationUI
+    implementation Deps.multiDex
+    implementation Deps.graphView
+    implementation Deps.location
+    implementation Deps.mapBox
+    implementation Deps.mapBoxAnnotation
+
+    kapt Deps.daggerCompiler
+    kapt Deps.roomCompiler
+
+    androidTestImplementation TestDeps.room
+    androidTestImplementation TestDeps.testArchCore
+    androidTestImplementation TestDeps.testRunner
+    androidTestImplementation TestDeps.testRules
+    androidTestImplementation TestDeps.testExt
+    androidTestImplementation TestDeps.espressoCore
+    androidTestImplementation TestDeps.espressoIntents
+    debugImplementation TestDeps.fragment
+    androidTestImplementation TestDeps.mockitoAndroid
+    androidTestImplementation TestDeps.couroutineTest
+
+    kaptAndroidTest Deps.dataBinding
+
+    testImplementation TestDeps.junit
+    testImplementation TestDeps.mockitoCore
+    testImplementation TestDeps.testArchCore
+    testImplementation TestDeps.couroutineTest
+
+    configurations.all {
+        resolutionStrategy.force Deps.viewModelKtx
+        resolutionStrategy.force Deps.coreKtx
+        resolutionStrategy.force Deps.architectureCore
+        resolutionStrategy.force Deps.lifeCycleCommon
+        resolutionStrategy.force Deps.fragment
+        resolutionStrategy.force Deps.fragmentKtx
+        resolutionStrategy.force Deps.lifecycleRuntime
+        resolutionStrategy.force Deps.liveDataCoreKtx
+        resolutionStrategy.force TestDeps.archCore
+    }
+}
