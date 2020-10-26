@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Tellerium Assessment</string>
+    <string name="app_name">Tellerium</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYXVtYXJiZWxsbyIsImEiOiJjazl0eGRjb2kwOGdwM2hub3QyOGE1cHc3In0.kdjd_-x4NU46HclzvwXtGg</string>
 </resources>
