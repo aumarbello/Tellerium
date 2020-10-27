@@ -81,6 +81,9 @@ dependencies {
     implementation Deps.location
     implementation Deps.mapBox
     implementation Deps.mapBoxAnnotation
+    implementation Deps.retrofit
+    implementation Deps.gsonConverter
+    implementation Deps.gson
 
     kapt Deps.daggerCompiler
     kapt Deps.roomCompiler

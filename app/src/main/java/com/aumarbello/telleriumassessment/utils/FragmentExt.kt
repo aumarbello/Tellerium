@@ -2,6 +2,7 @@ package com.aumarbello.telleriumassessment.utils
 
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
@@ -26,6 +27,10 @@ fun Fragment.showSnackBar(message: String) {
 
 fun Fragment.showSnackBar(message: Int) {
     Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
+}
+
+fun Fragment.showToast(message: String) {
+    Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
 }
 
 fun Fragment.hideKeyboard() {

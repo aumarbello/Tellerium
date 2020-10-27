@@ -34,6 +34,8 @@ object Versions {
     const val location = "17.0.0"
     const val mapBox = "9.1.0"
     const val mapBoxAnnotations = "0.8.0"
+    const val retrofit = "2.9.0"
+    const val gson = "2.8.6"
 }
 
 object Deps {
@@ -69,6 +71,9 @@ object Deps {
     const val location = "com.google.android.gms:play-services-location:${Versions.location}"
     const val mapBox = "com.mapbox.mapboxsdk:mapbox-android-sdk:${Versions.mapBox}"
     const val mapBoxAnnotation = "com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:${Versions.mapBoxAnnotations}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val gson = "com.google.code.gson:gson:${Versions.gson}"
 }
 
 object TestDeps {

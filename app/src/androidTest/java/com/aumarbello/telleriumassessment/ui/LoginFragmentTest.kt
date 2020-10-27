@@ -9,8 +9,8 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.aumarbello.farmlog.CoroutineTestRule
-import com.aumarbello.farmlog.mock
+import com.aumarbello.telleriumassessment.CoroutineTestRule
+import com.aumarbello.telleriumassessment.mock
 import com.aumarbello.telleriumassessment.R
 import com.aumarbello.telleriumassessment.models.State
 import com.aumarbello.telleriumassessment.utils.Event

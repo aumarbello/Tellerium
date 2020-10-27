@@ -1,4 +1,4 @@
-package com.aumarbello.farmlog
+package com.aumarbello.telleriumassessment
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

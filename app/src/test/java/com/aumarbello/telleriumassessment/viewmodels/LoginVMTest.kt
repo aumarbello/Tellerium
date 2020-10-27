@@ -2,8 +2,8 @@ package com.aumarbello.telleriumassessment.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.aumarbello.farmlog.CoroutineTestRule
-import com.aumarbello.farmlog.mock
+import com.aumarbello.telleriumassessment.CoroutineTestRule
+import com.aumarbello.telleriumassessment.mock
 import com.aumarbello.telleriumassessment.models.State
 import com.aumarbello.telleriumassessment.repos.LoginRepo
 import kotlinx.coroutines.ExperimentalCoroutinesApi

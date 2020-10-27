@@ -45,9 +45,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
         viewModel.state.observe(viewLifecycleOwner, Observer {
             binding.loader.fadeView(it.loading)
 
-            if (it.error != null) {
-                showSnackBar(it.error.peekContent())
-            }
+            it.error?.getContentIfNotHandled()?.let { msg -> showSnackBar(msg) }
 
             if (it.data == true) {
                 //TODO navigate to home fragment

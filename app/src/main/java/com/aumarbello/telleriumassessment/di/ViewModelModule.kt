@@ -2,6 +2,7 @@ package com.aumarbello.telleriumassessment.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.aumarbello.telleriumassessment.viewmodels.HomeVM
 import com.aumarbello.telleriumassessment.viewmodels.LoginVM
 import dagger.Binds
 import dagger.Module
@@ -16,4 +17,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginVM::class)
     abstract fun bindsLoginVM(viewModel: LoginVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeVM::class)
+    abstract fun bindsHomeVM(viewModel: HomeVM): ViewModel
 }

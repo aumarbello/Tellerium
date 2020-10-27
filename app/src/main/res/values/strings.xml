@@ -6,4 +6,12 @@
     <string name="hint_password">Password</string>
     <string name="label_login">Login</string>
     <string name="hint_email">Email address</string>
+    <string name="label_dashboard">Dashboard</string>
+    <string name="label_users">Users</string>
+    <string name="label_showing">Showing</string>
+    <string name="label_home">Home</string>
+    <string name="format_total">of %d</string>
+    <string name="label_display_count">Set display count</string>
+    <string name="hint_user_count">User count</string>
+    <string name="label_update">Update</string>
 </resources>

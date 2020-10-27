@@ -3,6 +3,7 @@ package com.aumarbello.telleriumassessment.di
 import android.app.Application
 import com.aumarbello.telleriumassessment.ui.LoginFragment
 import com.aumarbello.telleriumassessment.MainActivity
+import com.aumarbello.telleriumassessment.ui.HomeFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -19,4 +20,5 @@ interface AppComponent {
 
     fun inject(fragment: LoginFragment)
     fun inject(activity: MainActivity)
+    fun inject(fragment: HomeFragment)
 }
