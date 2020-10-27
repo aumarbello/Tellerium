@@ -15,6 +15,8 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="TestContainer" parent="Theme.MaterialComponents.NoActionBar"/>
+
     <style name="Theme.TelleriumAssessment.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

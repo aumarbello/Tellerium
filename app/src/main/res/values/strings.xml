@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Tellerium</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiYXVtYXJiZWxsbyIsImEiOiJjazl0eGRjb2kwOGdwM2hub3QyOGE1cHc3In0.kdjd_-x4NU46HclzvwXtGg</string>
+    <string name="label_welcome">Welcome Back</string>
+    <string name="label_continue">Login to continue</string>
+    <string name="hint_password">Password</string>
+    <string name="label_login">Login</string>
+    <string name="hint_email">Email address</string>
 </resources>
