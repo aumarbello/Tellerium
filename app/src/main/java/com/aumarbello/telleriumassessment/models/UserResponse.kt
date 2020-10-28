@@ -5,17 +5,17 @@ import com.google.gson.annotations.SerializedName
 data class UserResponse (
     @SerializedName("status")
     val status: Boolean,
-    @SerializedName("totalRec")
-    val total: Int,
-    @SerializedName("imageBaseUrl")
-    val baseImageUrl: String,
     @SerializedName("data")
     val data: Response
 )
 
 data class Response (
     @SerializedName("farmers")
-    val users: List<User>
+    val users: List<User>,
+    @SerializedName("totalRec")
+    val total: Int,
+    @SerializedName("imageBaseUrl")
+    val baseImageUrl: String
 )
 
 data class User (
@@ -23,8 +23,10 @@ data class User (
     val id: String,
     @SerializedName("first_name")
     val firstName: String,
-    @SerializedName("last_name")
+    @SerializedName("surname")
     val lastName: String,
+    @SerializedName("middle_name")
+    val middleName: String,
     @SerializedName("gender")
     val gender: String,
     @SerializedName("address")
@@ -33,7 +35,7 @@ data class User (
     val city: String,
     @SerializedName("state")
     val state: String,
-    @SerializedName("id_image")
+    @SerializedName("passport_photo")
     val imagePath: String,
     @SerializedName("marital_status")
     val maritalStatus: String,

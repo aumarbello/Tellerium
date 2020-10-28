@@ -26,33 +26,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         appComponent?.inject(this)
         viewModel = ViewModelProvider(this, factory)[HomeVM::class.java]
-        updateUsers(10)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentHomeBinding.bind(view)
+
         updateToolbarTitle(R.string.label_home)
+        updateUsers(10)
+        binding.pager.adapter = HomePagerAdapter(childFragmentManager)
 
         setObserver()
-        setListener()
-    }
-
-    private fun setListener() {
-        binding.bottomNav.setOnNavigationItemSelectedListener {
-            when(it.itemId) {
-                R.id.dashboard -> {
-                    binding.pager.currentItem = 0
-                    true
-                }
-
-                R.id.users -> {
-                    binding.pager.currentItem = 1
-                    true
-                }
-
-                else -> false
-            }
-        }
     }
 
     private fun showDialog() {

@@ -42,6 +42,7 @@ class AppModule {
 
         return Retrofit.Builder()
             .client(client)
+            .baseUrl("https://theagromall.com/api/v2/")
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(UsersService::class.java)
     }

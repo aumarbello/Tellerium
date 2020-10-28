@@ -3,6 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
+    app:startDestination="@id/login"
     >
 
+    <fragment
+        android:id="@+id/login"
+        android:name="com.aumarbello.telleriumassessment.ui.LoginFragment"
+        tools:layout="@layout/fragment_login"
+        />
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.aumarbello.telleriumassessment.ui.HomeFragment"
+        tools:layout="@layout/fragment_home"
+        />
 </navigation>

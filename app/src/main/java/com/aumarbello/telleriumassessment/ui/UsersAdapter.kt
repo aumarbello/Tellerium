@@ -38,17 +38,19 @@ class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
             //TODO check if image is a url or file path
             Picasso.get().load(user.imageUrl).into(image)
 
-            fullName.text = itemView.resources.getString(R.string.format_full_name, user.firstName, user.lastName)
+            fullName.text = itemView.resources.getString(
+                R.string.format_full_name,
+                user.firstName.toLowerCase(Locale.getDefault()).capitalize(),
+                user.lastName.toLowerCase(Locale.getDefault()).capitalize()
+            )
             address.text = formatAddress(user)
             gender.text = user.gender
             status.text = user.maritalStatus
             phoneNumber.text = user.phoneNumber
         }
 
-
-
         private fun formatAddress(user: UserEntity): String {
-            return "${user.address.capitalize()}${user.city.capitalize()}"
+            return "${user.address.capitalize()}, ${user.city.capitalize()}"
         }
 
         private fun String.capitalize(): String {

@@ -7,12 +7,19 @@ class UserLocationConverter {
     private val delimiter = ","
 
     @TypeConverter
-    fun fromUserLocation(location: UserLocation): String {
-        return "${location.latitude}$delimiter${location.longitude}"
+    fun fromUserLocation(location: UserLocation?): String? {
+        return if (location != null) {
+            "${location.latitude}$delimiter${location.longitude}"
+        } else {
+            null
+        }
     }
 
     @TypeConverter
-    fun toUserLocation(location: String): UserLocation {
+    fun toUserLocation(location: String?): UserLocation? {
+        if (location == null)
+            return null
+
         val coordinates = location.split(delimiter)
         return UserLocation(coordinates[0].toDouble(), coordinates[1].toDouble())
     }
@@ -24,13 +31,16 @@ class CoordinatesConverter {
 
     @TypeConverter
     fun fromCoordinates(coordinates: List<UserLocation>): String {
-        return coordinates.joinToString(separator) { helper.fromUserLocation(it) }
+        return coordinates.joinToString(separator) { helper.fromUserLocation(it) ?: "" }
     }
 
     @TypeConverter
     fun toCoordinates(coordinates: String): List<UserLocation> {
-        val locations = coordinates.split(separator)
+        if (coordinates.isEmpty()) {
+            return emptyList()
+        }
 
-        return locations.map { helper.toUserLocation(it) }
+        val locations = coordinates.split(separator)
+        return locations.mapNotNull { helper.toUserLocation(it) }
     }
 }

@@ -8,6 +8,7 @@ import androidx.core.util.PatternsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.aumarbello.telleriumassessment.R
 import com.aumarbello.telleriumassessment.databinding.FragmentLoginBinding
 import com.aumarbello.telleriumassessment.di.ViewModelFactory
@@ -48,7 +49,10 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
             it.error?.getContentIfNotHandled()?.let { msg -> showSnackBar(msg) }
 
             if (it.data == true) {
-                //TODO navigate to home fragment
+                findNavController().run {
+                    popBackStack()
+                    navigate(R.id.home)
+                }
             }
         })
     }

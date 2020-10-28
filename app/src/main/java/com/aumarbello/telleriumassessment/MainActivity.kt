@@ -1,17 +1,28 @@
 package com.aumarbello.telleriumassessment
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
+import androidx.navigation.findNavController
+import com.aumarbello.telleriumassessment.data.AuthHandler
+import com.aumarbello.telleriumassessment.di.DaggerAppComponent
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var authHandler: AuthHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+
+        DaggerAppComponent.builder().application(application).create().inject(this)
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        if (authHandler.isUserLoggedIn()) {
+            navController.run {
+                popBackStack()
+                navigate(R.id.home)
+            }
+        }
     }
 }

@@ -17,10 +17,10 @@ class HomeRepo @Inject constructor(
             UserEntity(
                 it.id,
                 it.firstName,
-                it.lastName,
+                "${it.middleName} ${it.lastName}",
                 null,
                 it.dateOfBirth,
-                "${response.baseImageUrl}${it.imagePath}",
+                "${response.data.baseImageUrl}${it.imagePath}",
                 it.mobileNumber,
                 it.emailAddress,
                 it.gender,
@@ -34,6 +34,6 @@ class HomeRepo @Inject constructor(
             )
         })
 
-        response.total
+        response.data.total
     }
 }
