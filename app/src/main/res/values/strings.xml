@@ -11,7 +11,10 @@
     <string name="label_showing">Showing</string>
     <string name="label_home">Home</string>
     <string name="format_total">of %d</string>
+    <string name="label_no_entry">No farms recorded yet.</string>
     <string name="label_display_count">Set display count</string>
     <string name="hint_user_count">User count</string>
     <string name="label_update">Update</string>
+    <string name="label_user_image">User image</string>
+    <string name="format_full_name">%s %s</string>
 </resources>

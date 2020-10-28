@@ -36,6 +36,7 @@ object Versions {
     const val mapBoxAnnotations = "0.8.0"
     const val retrofit = "2.9.0"
     const val gson = "2.8.6"
+    const val picasso = "2.71828"
 }
 
 object Deps {
@@ -74,6 +75,7 @@ object Deps {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
+    const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
 }
 
 object TestDeps {

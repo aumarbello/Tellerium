@@ -84,6 +84,7 @@ dependencies {
     implementation Deps.retrofit
     implementation Deps.gsonConverter
     implementation Deps.gson
+    implementation Deps.picasso
 
     kapt Deps.daggerCompiler
     kapt Deps.roomCompiler
