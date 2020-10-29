@@ -8,6 +8,9 @@ interface UsersDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertOrUpdateUser(vararg users: UserEntity)
 
+    @Update
+    fun updateUser(user: UserEntity)
+
     @Transaction
     fun saveUsers(users: List<UserEntity>) {
         deleteAllUsers()

@@ -8,6 +8,8 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="?android:colorBackground"
+    android:transitionGroup="true"
+    android:transitionName="@string/transition_name_user_details"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,8 +18,8 @@
 
         <ImageView
             android:id="@+id/profileImage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
             android:layout_marginTop="@dimen/spacing_medium"
             android:contentDescription="@string/label_profile_image"
             android:background="@drawable/bg_form_item"
@@ -129,6 +131,7 @@
                 android:textSize="14sp"
                 android:enabled="false"
                 android:inputType="text"
+                android:background="@null"
                 android:importantForAutofill="no"
                 />
         </LinearLayout>

@@ -13,6 +13,7 @@ import com.aumarbello.telleriumassessment.databinding.FragmentHomeBinding
 import com.aumarbello.telleriumassessment.di.ViewModelFactory
 import com.aumarbello.telleriumassessment.utils.*
 import com.aumarbello.telleriumassessment.viewmodels.HomeVM
+import com.google.android.material.transition.MaterialSharedAxis
 import javax.inject.Inject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -45,6 +46,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.pager.adapter = HomePagerAdapter(childFragmentManager)
 
         setObserver()
+        setTransitions()
     }
 
     private fun showDialog() {
@@ -94,5 +96,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun updateUsers() {
         binding.limit.text = limit.toString()
         viewModel.fetchUsers(limit)
+    }
+
+    private fun setTransitions() {
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
+            duration = midDuration
+        }
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z,false).apply {
+            duration = midDuration
+        }
     }
 }

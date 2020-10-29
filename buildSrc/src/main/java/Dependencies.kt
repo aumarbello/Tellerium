@@ -12,7 +12,7 @@ object Versions {
     const val appCompat = "1.0.2"
     const val coreKtx = "1.0.2"
     const val fragment = "1.2.3"
-    const val material = "1.2.0-alpha05"
+    const val material = "1.3.0-alpha03"
     const val constraintLayout = "2.0.0-beta1"
     const val testRunner = "1.2.0"
     const val testExt = "1.1.0"

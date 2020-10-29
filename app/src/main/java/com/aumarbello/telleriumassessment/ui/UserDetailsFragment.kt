@@ -5,12 +5,12 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
-import android.transition.Slide
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -37,6 +37,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialSharedAxis
 import com.mapbox.mapboxsdk.geometry.LatLng
 import java.io.File
 import java.text.SimpleDateFormat
@@ -65,8 +66,6 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
 
         appComponent?.inject(this)
         viewModel.getUser(args.userId)
-
-        postponeEnterTransition()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -419,15 +418,18 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
     }
 
     private fun startTransitions() {
-        enterTransition = MaterialContainerTransform(requireContext()).apply {
-            endView = binding.root
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            drawingViewId = R.id.nav_host_fragment
+            duration = midDuration
+            scrimColor = Color.TRANSPARENT
         }
 
-        returnTransition = Slide().apply {
-            duration = 180
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
+            duration = midDuration
         }
-
-        startPostponedEnterTransition()
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply {
+            duration = midDuration
+        }
     }
 
     private companion object {

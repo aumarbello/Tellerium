@@ -16,6 +16,7 @@ import com.aumarbello.telleriumassessment.utils.*
 import com.aumarbello.telleriumassessment.viewmodels.LoginVM
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.transition.MaterialSharedAxis
 import java.util.regex.Pattern
 import javax.inject.Inject
 
@@ -40,6 +41,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
 
         setObservers()
         setListeners()
+        setTransitions()
     }
 
     private fun setObservers() {
@@ -105,5 +107,14 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
+
+    private fun setTransitions() {
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
+            duration = midDuration
+        }
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply {
+            duration = midDuration
+        }
     }
 }

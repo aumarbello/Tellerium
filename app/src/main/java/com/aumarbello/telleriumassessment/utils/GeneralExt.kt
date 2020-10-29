@@ -1,6 +1,5 @@
 package com.aumarbello.telleriumassessment.utils
 
-import android.graphics.BitmapFactory
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -9,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
+import com.aumarbello.telleriumassessment.R
 import com.aumarbello.telleriumassessment.TelleriumApplication
 import com.aumarbello.telleriumassessment.di.AppComponent
 import com.aumarbello.telleriumassessment.di.DaggerAppComponent
@@ -53,11 +53,9 @@ fun ImageView.loadImage(url: String) {
         val imageFile = File(url)
 
         if (imageFile.exists()) {
-            val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
-            with(this) {
-                scaleType = ImageView.ScaleType.CENTER_CROP
-                setImageBitmap(bitmap)
-            }
+            Picasso.get().load(imageFile)
+                .resizeDimen(R.dimen.image_size, R.dimen.image_size)
+                .into(this)
         }
     }
 }

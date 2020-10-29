@@ -51,7 +51,6 @@ class DashboardFragment: Fragment(R.layout.fragment_dashboard) {
 
             if (it.data != null) {
                 adapter.submitList(it.data)
-                binding.tvEmpty.fadeView(it.data.isEmpty())
             }
         })
     }

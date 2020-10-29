@@ -34,18 +34,5 @@
             android:indeterminateDrawable="@drawable/ic_progress"
             />
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/tvEmpty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorOnSurface"
-        android:textSize="13sp"
-        android:text="@string/label_no_entry"
-        android:drawableTop="@drawable/ic_empty"
-        android:drawablePadding="3dp"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        />
 </FrameLayout>
 </layout>

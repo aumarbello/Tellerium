@@ -5,17 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.aumarbello.telleriumassessment.NavGraphDirections
 import com.aumarbello.telleriumassessment.R
 import com.aumarbello.telleriumassessment.db.UserEntity
 import com.aumarbello.telleriumassessment.utils.loadImage
 import java.util.*
 
-class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
+class UsersAdapter (private val callback: CallBack) : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
+    interface CallBack {
+        fun openDetails(view: View, userId: String)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.item_user, parent, false
@@ -36,8 +38,9 @@ class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
         private val phoneNumber: TextView = view.findViewById(R.id.phone_number)
 
         fun bindItem(user: UserEntity) {
-            image.loadImage(user.imageUrl)
+            itemView.transitionName = user.id
 
+            image.loadImage(user.imageUrl)
             fullName.text = itemView.resources.getString(
                 R.string.format_full_name,
                 user.firstName.toLowerCase(Locale.getDefault()).capitalize(),
@@ -48,9 +51,7 @@ class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
             phoneNumber.text = user.phoneNumber
 
             itemView.setOnClickListener {
-                it.findNavController().navigate(
-                    NavGraphDirections.toUserDetails(user.id)
-                )
+                callback.openDetails(it, user.id)
             }
         }
 

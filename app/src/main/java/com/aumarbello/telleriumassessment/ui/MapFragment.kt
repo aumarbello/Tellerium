@@ -10,14 +10,16 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.aumarbello.telleriumassessment.R
 import com.aumarbello.telleriumassessment.di.ViewModelFactory
 import com.aumarbello.telleriumassessment.models.UserLocation
-import com.aumarbello.telleriumassessment.R
 import com.aumarbello.telleriumassessment.utils.appComponent
+import com.aumarbello.telleriumassessment.utils.midDuration
 import com.aumarbello.telleriumassessment.utils.updateToolbarTitle
 import com.aumarbello.telleriumassessment.viewmodels.MapVM
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialSharedAxis
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
@@ -78,6 +80,8 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                 }
             }
         }
+
+        setTransitions()
     }
 
     override fun onRequestPermissionsResult(
@@ -195,6 +199,15 @@ class MapFragment : Fragment(R.layout.fragment_map) {
             findNavController().popBackStack()
         }
         snackbar.show()
+    }
+
+    private fun setTransitions() {
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
+            duration = midDuration
+        }
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply {
+            duration = midDuration
+        }
     }
 
     companion object {

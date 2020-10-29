@@ -16,6 +16,6 @@ class UsersRepo @Inject constructor (private val dao: UsersDao) {
     }
 
     suspend fun updateUser(user: UserEntity) = withContext(Dispatchers.IO) {
-        dao.insertOrUpdateUser(user)
+        dao.updateUser(user)
     }
 }
