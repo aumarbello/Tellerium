@@ -29,6 +29,7 @@ class DashboardFragment: Fragment(R.layout.fragment_dashboard) {
 
         appComponent?.inject(this)
         viewModel = ViewModelProvider(this, factory)[DashboardVM::class.java]
+        viewModel.populateDashboard()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +40,6 @@ class DashboardFragment: Fragment(R.layout.fragment_dashboard) {
             it.addItemDecoration(GridSpacingDecorator())
         }
 
-        viewModel.populateDashboard()
         setObservers()
     }
 

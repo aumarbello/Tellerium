@@ -21,18 +21,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var viewModel: HomeVM
     private lateinit var binding: FragmentHomeBinding
 
+    private var limit = 10
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         appComponent?.inject(this)
         viewModel = ViewModelProvider(this, factory)[HomeVM::class.java]
+        viewModel.fetchUsers(limit)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentHomeBinding.bind(view)
+        binding.limit.text = limit.toString()
 
         updateToolbarTitle(R.string.label_home)
-        updateUsers(10)
+
         binding.pager.adapter = HomePagerAdapter(childFragmentManager)
 
         setObserver()
@@ -60,7 +64,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 return@setOnClickListener
             }
 
-            updateUsers(count)
+            closeKeyboard()
+            limit = count
+            updateUsers()
             dialog.cancel()
         }
 
@@ -80,7 +86,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         })
     }
 
-    private fun updateUsers(limit: Int) {
+    private fun updateUsers() {
         binding.limit.text = limit.toString()
         viewModel.fetchUsers(limit)
     }

@@ -7,7 +7,7 @@
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/colorAccent</item>
-        <item name="colorOnSecondary">@color/colorOnSurface</item>
+        <item name="colorOnSecondary">@color/colorGrey</item>
 
         <item name="android:fontFamily">@font/raleway_semibold</item>
 

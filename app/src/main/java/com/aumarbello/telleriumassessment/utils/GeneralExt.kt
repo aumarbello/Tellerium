@@ -37,11 +37,11 @@ fun Fragment.showToast(message: String) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
 }
 
-fun Fragment.hideKeyboard() {
-    view?.hideKeyboard()
+fun Fragment.closeKeyboard() {
+    view?.closeKeyboard()
 }
 
-fun View.hideKeyboard() {
+fun View.closeKeyboard() {
     val imm = context.getSystemService<InputMethodManager>()
     imm?.hideSoftInputFromWindow(windowToken, 0)
 }

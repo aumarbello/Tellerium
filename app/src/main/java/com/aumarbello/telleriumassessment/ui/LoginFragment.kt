@@ -60,7 +60,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
     private fun setListeners() {
         binding.login.setOnClickListener {
             if (validate()) {
-                hideKeyboard()
+                closeKeyboard()
 
                 val email = binding.email.text.toString()
                 val password = binding.password.text.toString()

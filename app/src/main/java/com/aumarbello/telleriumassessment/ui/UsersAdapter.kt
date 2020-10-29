@@ -33,7 +33,6 @@ class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
         private val fullName: TextView = view.findViewById(R.id.full_name)
         private val address: TextView = view.findViewById(R.id.address)
         private val gender: TextView = view.findViewById(R.id.gender)
-        private val status: TextView = view.findViewById(R.id.marital_status)
         private val phoneNumber: TextView = view.findViewById(R.id.phone_number)
 
         fun bindItem(user: UserEntity) {
@@ -46,7 +45,6 @@ class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
             )
             address.text = formatAddress(user)
             gender.text = user.gender
-            status.text = user.maritalStatus
             phoneNumber.text = user.phoneNumber
 
             itemView.setOnClickListener {

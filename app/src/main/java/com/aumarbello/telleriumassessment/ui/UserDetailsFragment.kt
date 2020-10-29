@@ -52,11 +52,13 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
     private lateinit var coordinatesAdapter: CoordinatesAdapter
 
     private lateinit var launchMode: String
+    private lateinit var sharedViewModel: MapVM
     private lateinit var currentImagePath: String
 
     private val viewModel by viewModels<UserDetailsVM> { factory }
     private val args by navArgs<UserDetailsFragmentArgs>()
-    private lateinit var sharedViewModel: MapVM
+
+    private var isFilled = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,7 +124,8 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
 
             it.error?.getContentIfNotHandled()?.let { msg -> showSnackBar(msg) }
 
-            if (it.data != null) {
+            if (it.data != null && !isFilled) {
+                isFilled = true
                 preFillDetails(it.data)
             }
         })
@@ -148,7 +151,7 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
         binding.firstName.setText(data.firstName)
         binding.otherNames.setText(data.lastName)
         binding.phoneNumber.setText(data.phoneNumber)
-        binding.age.text = data.dateOfBirth
+        binding.age.setText( data.dateOfBirth)
 
         val selected = if (data.gender.equals("Male", true)) {
             R.id.male
@@ -198,22 +201,23 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
     }
 
     private fun showDatePicker() {
-        val today = Calendar.getInstance()
+        val currentDate = binding.age.text.split("-").map { it.toInt() }
+
         val listener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            binding.age.text = getString(
+            binding.age.setText(getString(
                 R.string.format_date_of_birth,
                 year,
-                month,
+                month.inc(),
                 day
-            )
+            ))
         }
 
         DatePickerDialog(
             requireContext(),
             listener,
-            today[Calendar.YEAR],
-            today[Calendar.MONTH],
-            today[Calendar.DAY_OF_MONTH]
+            currentDate[0],
+            currentDate[1].dec(),
+            currentDate[2]
         ).show()
     }
 
