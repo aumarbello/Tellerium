@@ -24,10 +24,6 @@ class DashboardRepo @Inject constructor(private val dao: UsersDao) {
 
         val items = mutableListOf<DashboardItem>()
         items.add(DashboardItem.CountItem("Total Users", entities.size))
-        items.add(DashboardItem.CountItem(
-            "Users with complete profile",
-            entities.count { it.location != null && it.farmCoordinates.isNotEmpty() }
-        ))
         items.add(resolveAgeDistribution(entities))
         items.add(resolveGenderDistribution(entities))
         items.add(resolveStatusDistribution(entities))

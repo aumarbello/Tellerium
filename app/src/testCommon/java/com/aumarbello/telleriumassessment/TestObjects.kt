@@ -27,7 +27,6 @@ object TestObjects {
 
     val dashboardItems = listOf(
         DashboardItem.CountItem("Total Users", 5),
-        DashboardItem.CountItem("Users with complete profile", 5),
         DashboardItem.PieChartItem(
             "Age distribution",
             5,

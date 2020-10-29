@@ -12,7 +12,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.*
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -69,7 +69,7 @@ class DashboardRepoTest {
 
         val items = repository.generateDashboardItems().getOrAwaitValue()
 
-        val ageItem = items[2]
+        val ageItem = items[1]
         val simpleChart = DashboardItem.PieChartItem(
             "Age distribution",
             1,
@@ -88,7 +88,7 @@ class DashboardRepoTest {
 
         val items = repository.generateDashboardItems().getOrAwaitValue()
 
-        val ageItem = items[2]
+        val ageItem = items[1]
 
         val ageList = logEntries.map { it.dateOfBirth.toUsersAge() }.sorted()
         val simpleChart = DashboardItem.PieChartItem(
