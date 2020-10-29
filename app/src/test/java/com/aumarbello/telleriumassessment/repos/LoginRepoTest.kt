@@ -16,7 +16,7 @@ class LoginRepoTest {
 
     @Before
     fun setUp() {
-        repo = LoginRepo(FakeAuthHandler())
+        repo = LoginRepo(FakePreferences())
     }
 
     @Test

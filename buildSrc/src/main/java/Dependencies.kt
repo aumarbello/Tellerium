@@ -63,6 +63,7 @@ object Deps {
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.couroutines}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.couroutines}"
     const val room = "androidx.room:room-runtime:${Versions.room}"
+    const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val dataBinding = "androidx.databinding:databinding-compiler:${Versions.dataBinding}"
     const val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"

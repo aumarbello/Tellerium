@@ -2,8 +2,8 @@ package com.aumarbello.telleriumassessment.di
 
 import android.app.Application
 import android.content.Context
-import com.aumarbello.telleriumassessment.data.AuthHandler
-import com.aumarbello.telleriumassessment.data.InMemoryAuthHandler
+import com.aumarbello.telleriumassessment.data.AppPreferences
+import com.aumarbello.telleriumassessment.data.Preferences
 import com.aumarbello.telleriumassessment.db.TelleriumDatabase
 import com.aumarbello.telleriumassessment.db.UsersDao
 import com.aumarbello.telleriumassessment.remote.UsersService
@@ -24,8 +24,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesAuthHandler(context: Context): AuthHandler {
-        return InMemoryAuthHandler(context)
+    fun providesAuthHandler(context: Context): Preferences {
+        return AppPreferences(context)
     }
 
     @Provides

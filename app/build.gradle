@@ -73,6 +73,7 @@ dependencies {
     implementation Deps.constraintLayout
     implementation Deps.daggerRuntime
     implementation Deps.room
+    implementation Deps.roomKtx
     implementation Deps.lifecycleKtx
     implementation Deps.timber
     implementation Deps.navigation

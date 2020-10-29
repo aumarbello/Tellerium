@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.aumarbello.telleriumassessment.R
+import com.aumarbello.telleriumassessment.data.Preferences
 import com.aumarbello.telleriumassessment.databinding.FragmentHomeBinding
 import com.aumarbello.telleriumassessment.di.ViewModelFactory
 import com.aumarbello.telleriumassessment.utils.*
@@ -18,17 +19,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     @Inject
     lateinit var factory: ViewModelFactory
 
+    @Inject
+    lateinit var preferences: Preferences
+
     private lateinit var viewModel: HomeVM
     private lateinit var binding: FragmentHomeBinding
 
-    private var limit = 10
+    private var limit = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         appComponent?.inject(this)
         viewModel = ViewModelProvider(this, factory)[HomeVM::class.java]
-        viewModel.fetchUsers(limit)
+        limit = preferences.usersCount()
+        viewModel.fetchUsers(limit, true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

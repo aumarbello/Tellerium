@@ -1,5 +1,6 @@
 package com.aumarbello.telleriumassessment.repos
 
+import com.aumarbello.telleriumassessment.data.Preferences
 import com.aumarbello.telleriumassessment.db.UserEntity
 import com.aumarbello.telleriumassessment.db.UsersDao
 import com.aumarbello.telleriumassessment.remote.UsersService
@@ -9,9 +10,15 @@ import javax.inject.Inject
 
 class HomeRepo @Inject constructor(
     private val service: UsersService,
+    private val preferences: Preferences,
     private val dao: UsersDao
 ) {
-    suspend fun loadUsers(limit: Int) = withContext(Dispatchers.IO) {
+    suspend fun loadUsers(limit: Int, isInitialLoad: Boolean) = withContext(Dispatchers.IO) {
+        val usersCount = dao.getUsersCount()
+        if (isInitialLoad && usersCount > 0) {
+            return@withContext preferences.getTotalUsers()
+        }
+
         val response = service.loadUsers(limit)
         dao.saveUsers(response.data.users.map {
             UserEntity(
@@ -34,6 +41,10 @@ class HomeRepo @Inject constructor(
             )
         })
 
-        response.data.total
+        val total = response.data.total
+        preferences.setUsersCount(limit)
+        preferences.setTotalUsers(total)
+
+        total
     }
 }
