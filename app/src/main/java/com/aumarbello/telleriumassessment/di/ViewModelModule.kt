@@ -2,10 +2,7 @@ package com.aumarbello.telleriumassessment.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.aumarbello.telleriumassessment.viewmodels.DashboardVM
-import com.aumarbello.telleriumassessment.viewmodels.HomeVM
-import com.aumarbello.telleriumassessment.viewmodels.LoginVM
-import com.aumarbello.telleriumassessment.viewmodels.UsersVM
+import com.aumarbello.telleriumassessment.viewmodels.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -34,4 +31,14 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(UsersVM::class)
     abstract fun bindUsersVM(viewModel: UsersVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserDetailsVM::class)
+    abstract fun bindUserDetailsVM(viewModel: UserDetailsVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MapVM::class)
+    abstract fun bindsMapSharedVM(viewModel: MapVM): ViewModel
 }

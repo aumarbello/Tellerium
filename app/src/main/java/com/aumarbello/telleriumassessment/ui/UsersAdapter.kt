@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.aumarbello.telleriumassessment.NavGraphDirections
 import com.aumarbello.telleriumassessment.R
 import com.aumarbello.telleriumassessment.db.UserEntity
-import com.squareup.picasso.Picasso
+import com.aumarbello.telleriumassessment.utils.loadImage
 import java.util.*
 
 class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
@@ -35,8 +37,7 @@ class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
         private val phoneNumber: TextView = view.findViewById(R.id.phone_number)
 
         fun bindItem(user: UserEntity) {
-            //TODO check if image is a url or file path
-            Picasso.get().load(user.imageUrl).into(image)
+            image.loadImage(user.imageUrl)
 
             fullName.text = itemView.resources.getString(
                 R.string.format_full_name,
@@ -47,6 +48,12 @@ class UsersAdapter : ListAdapter<UserEntity, UsersAdapter.UsersHolder>(DIFF) {
             gender.text = user.gender
             status.text = user.maritalStatus
             phoneNumber.text = user.phoneNumber
+
+            itemView.setOnClickListener {
+                it.findNavController().navigate(
+                    NavGraphDirections.toUserDetails(user.id)
+                )
+            }
         }
 
         private fun formatAddress(user: UserEntity): String {

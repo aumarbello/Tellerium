@@ -17,4 +17,17 @@
         android:name="com.aumarbello.telleriumassessment.ui.HomeFragment"
         tools:layout="@layout/fragment_home"
         />
+
+    <action
+        android:id="@+id/to_user_details"
+        app:destination="@id/user_details">
+        <argument
+            android:name="user_id"
+            app:argType="string"
+            />
+    </action>
+
+    <include
+        app:graph="@navigation/user_details"
+        />
 </navigation>

@@ -1,7 +1,9 @@
 package com.aumarbello.telleriumassessment.utils
 
+import android.graphics.BitmapFactory
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +13,8 @@ import com.aumarbello.telleriumassessment.TelleriumApplication
 import com.aumarbello.telleriumassessment.di.AppComponent
 import com.aumarbello.telleriumassessment.di.DaggerAppComponent
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
+import java.io.File
 
 val Fragment.appComponent: AppComponent?
 get() {
@@ -40,6 +44,22 @@ fun Fragment.hideKeyboard() {
 fun View.hideKeyboard() {
     val imm = context.getSystemService<InputMethodManager>()
     imm?.hideSoftInputFromWindow(windowToken, 0)
+}
+
+fun ImageView.loadImage(url: String) {
+    if (url.startsWith("https")) {
+        Picasso.get().load(url).into(this)
+    } else {
+        val imageFile = File(url)
+
+        if (imageFile.exists()) {
+            val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+            with(this) {
+                scaleType = ImageView.ScaleType.CENTER_CROP
+                setImageBitmap(bitmap)
+            }
+        }
+    }
 }
 
 fun Fragment.updateToolbarTitle(@StringRes title: Int, showBackButton: Boolean = false) {

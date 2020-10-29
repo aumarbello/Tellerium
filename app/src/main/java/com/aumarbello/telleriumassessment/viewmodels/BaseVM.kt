@@ -11,6 +11,22 @@ abstract class BaseVM <T>: ViewModel() {
     private val _state = MediatorLiveData<State<T>>()
     val state: LiveData<State<T>> = _state
 
+    protected fun load(message: String, block: suspend () -> Unit) {
+        viewModelScope.launch {
+            try {
+                _state.value = State(true)
+
+                block()
+            } catch (ex: Throwable) {
+                ex.printStackTrace()
+
+                updateState { it.copy(error = Event(resolveErrorMessage(ex) ?: message)) }
+            } finally {
+                updateState { it.copy(loading = false) }
+            }
+        }
+    }
+
     protected fun loadData(message: String, block: suspend () -> T) {
         viewModelScope.launch {
             try {

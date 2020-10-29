@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:chipStartPadding="@dimen/spacing_small"
+    app:chipEndPadding="@dimen/spacing_small"
+    style="@style/Widget.MaterialComponents.Chip.Entry"
+    tools:text="6.63901,5.7031"
+    />

@@ -18,6 +18,9 @@ interface UsersDao {
     @Query("SELECT * FROM users")
     fun fetchUsers(): LiveData<List<UserEntity>>
 
+    @Query("SELECT * FROM users where id = :userId LIMIT 1")
+    fun findById(userId: String): UserEntity
+
     @Query("DELETE FROM users")
     fun deleteAllUsers()
 }
